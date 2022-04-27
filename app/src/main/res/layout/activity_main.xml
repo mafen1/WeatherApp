@@ -76,16 +76,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/btnMore"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="112dp"-->
-<!--        android:layout_marginTop="68dp"-->
-<!--        android:background="@drawable/rounted_corners"-->
-<!--        android:padding="10dp"-->
-<!--        android:text="Узнать больше"-->
-<!--        android:textColor="@color/black"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvTemperature" />-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/rounted_corners"
+        android:padding="10dp"
+        android:text="Узнать больше"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTemperature" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.myweather.ui.mainScreen
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -22,10 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initObserves()
+        initView()
     }
 
-    private fun initObserves() {
+    private fun initView() {
         val edText = binding.editTextTextPersonName.text
 
         binding.btnSearchCity.setOnClickListener {
@@ -43,5 +44,9 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+
+//        binding.btnMore.setOnClickListener {
+//            val i = Intent(MainActivity::class.java)
+//        }
     }
 }
