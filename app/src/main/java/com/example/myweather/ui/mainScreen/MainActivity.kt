@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.myweather.core.Extension
+import com.example.myweather.data.repository.RepositoryImpl
 import com.example.myweather.databinding.ActivityMainBinding
 import com.example.myweather.domain.repository.Repository
 import com.example.myweather.domain.useCase.UseCase
@@ -13,7 +14,7 @@ import com.example.myweather.domain.useCase.UseCase
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    val repository = Repository.RepositoryImpl()
+    val repository = RepositoryImpl()
     private val viewModel: MainViewModel by viewModels {
         ViewModelFactory(UseCase(repository))
     }
@@ -45,8 +46,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        binding.btnMore.setOnClickListener {
-//            val i = Intent(MainActivity::class.java)
-//        }
+        binding.btnMore.setOnClickListener {
+            val i = Intent(this,MainActivity::class.java)
+            startActivity(i)
+        }
     }
 }
