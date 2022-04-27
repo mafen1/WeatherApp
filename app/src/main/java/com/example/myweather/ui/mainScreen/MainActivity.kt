@@ -9,12 +9,13 @@ import com.example.myweather.data.repository.RepositoryImpl
 import com.example.myweather.databinding.ActivityMainBinding
 import com.example.myweather.domain.repository.Repository
 import com.example.myweather.domain.useCase.UseCase
+import com.example.myweather.ui.secondScreen.MainActivity2
 
 //@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    val repository = RepositoryImpl()
+    private val repository = RepositoryImpl()
     private val viewModel: MainViewModel by viewModels {
         ViewModelFactory(UseCase(repository))
     }
@@ -28,16 +29,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        val edText = binding.editTextTextPersonName.text
-
         binding.btnSearchCity.setOnClickListener {
-            if (edText.isNotEmpty()) {
-
-                viewModel.temperatureInThisCity(edText.toString(), binding.root)
-
-                viewModel.listTemperature.observe(this) {
-                    extension.updateText(binding.tvTemperature, it.toString())
-                }
+            if (binding.edFindCity.text.isNotEmpty()) {
+                viewModel.temperatureInThisCity(binding.edFindCity.text.toString(), binding.root)
+                initObserver()
             } else {
                 extension.makeSnackBarMessage(
                     binding.root,
@@ -47,8 +42,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnMore.setOnClickListener {
-            val i = Intent(this,MainActivity::class.java)
+            val i = Intent(this, MainActivity2::class.java)
+            i.putExtra("edText", binding.edFindCity.text.toString())
             startActivity(i)
+        }
+
+    }
+
+    private fun initObserver() {
+        viewModel.listTemperature.observe(this) {
+            extension.updateText(binding.tvTemperature, it.toString())
         }
     }
 }

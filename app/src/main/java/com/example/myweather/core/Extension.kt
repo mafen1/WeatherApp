@@ -7,10 +7,11 @@ import com.google.android.material.snackbar.Snackbar
 
 class Extension {
 
-    fun updateText(view: TextView, message: Any){
+    fun updateText(view: TextView, message: Any) {
         view.text = message.toString()
     }
-    fun makeSnackBarMessage(view: View, message: String){
+
+    fun makeSnackBarMessage(view: View, message: String) {
         Snackbar.make(
             view,
             message,

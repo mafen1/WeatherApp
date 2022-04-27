@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myweather.domain.useCase.UseCase
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(private val catUseCase: UseCase) : ViewModelProvider.Factory {
+class ViewModelFactory(private val useCase: UseCase) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if(modelClass.isAssignableFrom(MainViewModel::class.java)){
-            MainViewModel(this.catUseCase) as T
+            MainViewModel(this.useCase) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")
         }
