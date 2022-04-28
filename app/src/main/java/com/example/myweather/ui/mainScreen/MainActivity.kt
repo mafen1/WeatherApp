@@ -32,8 +32,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.temperatureInThisCity(binding.edFindCity.text.toString(), binding.root)
                 initObserver()
             } else {
-                makeSnackBarMessage(binding.root,
-                    "Пожалуйста введите город!!")
+                makeSnackBarMessage(binding.root, "Пожалуйста введите город!!")
                 binding.btnMore.visibility = View.GONE
             }
         }

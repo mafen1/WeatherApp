@@ -20,7 +20,6 @@ class MainViewModel @Inject constructor(
     private var _listTemperature: MutableLiveData<Double> = MutableLiveData()
     var listTemperature: LiveData<Double> = _listTemperature
 
-
     fun temperatureInThisCity(userCity: String, view: View) {
         viewModelScope.launch(Dispatchers.IO) {
 
