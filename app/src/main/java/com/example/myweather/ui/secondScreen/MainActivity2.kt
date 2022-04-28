@@ -8,7 +8,9 @@ import com.example.myweather.data.repository.RepositoryImpl
 import com.example.myweather.databinding.ActivityMain2Binding
 import com.example.myweather.domain.useCase.UseCase
 
+
 class MainActivity2 : AppCompatActivity() {
+
     private lateinit var binding: ActivityMain2Binding
     private val repository = RepositoryImpl()
     private val viewModel: SecondViewModel by viewModels {
@@ -40,7 +42,7 @@ class MainActivity2 : AppCompatActivity() {
             temperature.observe(this@MainActivity2) {
                 extension.updateText(binding.tvParameterTemperature, it.toString())
             }
-            cloudinessParametr.observe(this@MainActivity2) {
+            cloudinessParameter.observe(this@MainActivity2) {
                 extension.updateText(binding.tvParameterCloud, it.toString())
             }
             description.observe(this@MainActivity2) {

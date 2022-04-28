@@ -8,11 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myweather.core.Extension
 import com.example.myweather.core.ImmutableValues
-import com.example.myweather.data.models.Clouds
 import com.example.myweather.domain.useCase.UseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.IllegalStateException
 
 class SecondViewModel(
     private val useCase: UseCase
@@ -22,8 +20,8 @@ class SecondViewModel(
     private var _temperature: MutableLiveData<Double> = MutableLiveData()
     var temperature: LiveData<Double> = _temperature
 
-    private var _cloudinessParametr: MutableLiveData<Int> = MutableLiveData()
-    var cloudinessParametr: LiveData<Int> = _cloudinessParametr
+    private var _cloudinessParameter: MutableLiveData<Int> = MutableLiveData()
+    var cloudinessParameter: LiveData<Int> = _cloudinessParameter
 
     private var _description: MutableLiveData<String> = MutableLiveData()
     var description: LiveData<String> = _description
@@ -44,7 +42,7 @@ class SecondViewModel(
                     response.body()?.main?.temp ?: throw IllegalStateException("not info")
                 )
                 Log.d(ImmutableValues.TAG, _temperature.value.toString())
-                _cloudinessParametr.postValue(
+                _cloudinessParameter.postValue(
                     response.body()?.clouds?.all ?: throw IllegalStateException("not info")
                 )
                 _description.postValue(

@@ -2,6 +2,7 @@ package com.example.myweather.ui.mainScreen
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myweather.core.Extension
@@ -10,7 +11,6 @@ import com.example.myweather.databinding.ActivityMainBinding
 import com.example.myweather.domain.useCase.UseCase
 import com.example.myweather.ui.secondScreen.MainActivity2
 
-//@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -25,12 +25,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
+        binding.btnMore.visibility = View.GONE
     }
 
     private fun initView() {
         binding.btnSearchCity.setOnClickListener {
             if (binding.edFindCity.text.isNotEmpty()) {
-                binding.btnMore.isClickable = true
+                binding.btnMore.visibility = View.VISIBLE
                 viewModel.temperatureInThisCity(binding.edFindCity.text.toString(), binding.root)
                 initObserver()
             } else {
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                     binding.root,
                     "Пожалуйста введите город!!"
                 )
-                binding.btnMore.isClickable = false
+                binding.btnMore.visibility = View.GONE
             }
         }
 

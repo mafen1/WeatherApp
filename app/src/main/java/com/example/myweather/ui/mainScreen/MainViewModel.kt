@@ -10,7 +10,7 @@ import com.example.myweather.domain.useCase.UseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-//@HiltViewModel
+
 class MainViewModel(
     private val useCase: UseCase
 ) : ViewModel() {
