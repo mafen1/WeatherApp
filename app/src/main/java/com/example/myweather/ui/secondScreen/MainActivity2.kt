@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myweather.core.updateText
+import com.example.myweather.data.models.ResponseWeather
 import com.example.myweather.databinding.ActivityMain2Binding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +20,6 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(binding.root)
         initObserves()
         initView()
-
     }
 
     private fun initView() {
@@ -32,24 +32,14 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun initObserves() {
+        viewModel.weather.observe(this@MainActivity2) { updateUi(it) }
+    }
 
-        viewModel.apply {
-            temperature.observe(this@MainActivity2) {
-                updateText(binding.tvParameterTemperature, it.toString())
-            }
-            cloudinessParameter.observe(this@MainActivity2) {
-                updateText(binding.tvParameterCloud, it.toString())
-            }
-            description.observe(this@MainActivity2) {
-                updateText(binding.tvParameterDescription, it.toString())
-
-            }
-            minTemperature.observe(this@MainActivity2) {
-                updateText(binding.tvParameterMinTemperature, it.toString())
-            }
-            maxTemperature.observe(this@MainActivity2) {
-                updateText(binding.tvParameterMaxTemperature, it.toString())
-            }
-        }
+    private fun updateUi(it: ResponseWeather?) {
+        updateText(binding.tvParameterTemperature, it?.main?.temp.toString())
+        updateText(binding.tvParameterCloud, it?.clouds?.all.toString())
+        updateText(binding.tvParameterDescription, it?.weather?.get(0)?.description.toString())
+        updateText(binding.tvParameterMinTemperature, it?.main?.tempMin.toString())
+        updateText(binding.tvParameterMaxTemperature, it?.main?.tempMax.toString())
     }
 }
