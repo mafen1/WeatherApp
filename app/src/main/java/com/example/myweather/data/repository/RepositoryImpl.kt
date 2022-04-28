@@ -9,5 +9,4 @@ class RepositoryImpl : Repository {
 
     override suspend fun getTemperature(userCity: String): Response<ResponseWeather> =
         ApiService.ApiServiceImpl().fetchWeather(userCity)
-
 }
