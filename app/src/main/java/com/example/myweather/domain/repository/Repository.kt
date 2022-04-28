@@ -1,6 +1,5 @@
 package com.example.myweather.domain.repository
 
-import com.example.myweather.data.api.ApiService
 import com.example.myweather.data.models.ResponseWeather
 import retrofit2.Response
 

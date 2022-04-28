@@ -1,20 +1,15 @@
 package com.example.myweather.ui.secondScreen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
-import com.example.myweather.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myweather.core.Extension
-import com.example.myweather.core.ImmutableValues
 import com.example.myweather.data.repository.RepositoryImpl
 import com.example.myweather.databinding.ActivityMain2Binding
 import com.example.myweather.domain.useCase.UseCase
-import com.example.myweather.ui.mainScreen.MainViewModel
-import com.example.myweather.ui.mainScreen.ViewModelFactory
 
 class MainActivity2 : AppCompatActivity() {
-    lateinit var binding: ActivityMain2Binding
+    private lateinit var binding: ActivityMain2Binding
     private val repository = RepositoryImpl()
     private val viewModel: SecondViewModel by viewModels {
         ViewModelFactorySecond(UseCase(repository))
@@ -34,7 +29,7 @@ class MainActivity2 : AppCompatActivity() {
         val currentCity = intent.getStringExtra("edText")
         viewModel.fillInfo(currentCity!!, binding.root)
 
-        binding.btnFinsh.setOnClickListener {
+        binding.btnFinish.setOnClickListener {
             finish()
         }
     }
@@ -61,6 +56,5 @@ class MainActivity2 : AppCompatActivity() {
 
             }
         }
-
     }
 }

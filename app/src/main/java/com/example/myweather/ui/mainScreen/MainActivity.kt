@@ -1,20 +1,19 @@
 package com.example.myweather.ui.mainScreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myweather.core.Extension
 import com.example.myweather.data.repository.RepositoryImpl
 import com.example.myweather.databinding.ActivityMainBinding
-import com.example.myweather.domain.repository.Repository
 import com.example.myweather.domain.useCase.UseCase
 import com.example.myweather.ui.secondScreen.MainActivity2
 
 //@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private val repository = RepositoryImpl()
     private val viewModel: MainViewModel by viewModels {
         ViewModelFactory(UseCase(repository))
@@ -31,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         binding.btnSearchCity.setOnClickListener {
             if (binding.edFindCity.text.isNotEmpty()) {
+                binding.btnMore.isClickable = true
                 viewModel.temperatureInThisCity(binding.edFindCity.text.toString(), binding.root)
                 initObserver()
             } else {
@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                     binding.root,
                     "Пожалуйста введите город!!"
                 )
+                binding.btnMore.isClickable = false
             }
         }
 

@@ -17,7 +17,7 @@ interface ApiService {
     ): Response<ResponseWeather>
 
     // отправлем запррос
-    class ApiServiceImpl() : ApiService {
+    class ApiServiceImpl : ApiService {
         override suspend fun fetchWeather(
             userCity: String,
             idApp: String,

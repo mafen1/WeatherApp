@@ -1,20 +1,14 @@
 package com.example.myweather.ui.mainScreen
 
-import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myweather.core.Extension
-import com.example.myweather.core.ImmutableValues
 import com.example.myweather.domain.useCase.UseCase
-import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 //@HiltViewModel
 class MainViewModel(

@@ -5,10 +5,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
 
-    private val baseUrl = "http://api.openweathermap.org/"
+    private const val baseUrl = "http://api.openweathermap.org/"
     private var retrofit: Retrofit? = null
 
-    fun getClient(baseUrl: String = "http://api.openweathermap.org/"): Retrofit {
+    private fun getClient(baseUrl: String): Retrofit {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -20,5 +20,5 @@ object ApiClient {
     }
 
     // просим сервер дать данные
-    fun getApiService() = getClient(baseUrl).create(ApiService::class.java)
+    fun getApiService() = getClient(baseUrl).create(ApiService::class.java) ?: throw IllegalAccessException("problems in ApiClient")
 }
