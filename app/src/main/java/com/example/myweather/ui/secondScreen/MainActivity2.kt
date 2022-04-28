@@ -3,7 +3,6 @@ package com.example.myweather.ui.secondScreen
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myweather.core.Extension1
 import com.example.myweather.core.updateText
 import com.example.myweather.databinding.ActivityMain2Binding
 import dagger.hilt.android.AndroidEntryPoint

@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myweather.core.Extension1
 import com.example.myweather.core.ImmutableValues
+import com.example.myweather.core.makeSnackBarMessage
 import com.example.myweather.domain.useCase.UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,6 @@ import javax.inject.Inject
 class SecondViewModel @Inject constructor(
     private val useCase: UseCase
 ) : ViewModel() {
-    private val exception = Extension1()
 
     private var _temperature: MutableLiveData<Double> = MutableLiveData()
     var temperature: LiveData<Double> = _temperature
@@ -60,7 +59,7 @@ class SecondViewModel @Inject constructor(
                     response.body()?.main?.tempMax ?: throw IllegalStateException("not info")
                 )
             } else {
-                exception.makeSnackBarMessage(view, "Город не найден")
+                makeSnackBarMessage(view, "Город не найден")
             }
         }
     }
