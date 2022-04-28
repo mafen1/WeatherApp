@@ -2,7 +2,6 @@ package com.example.myweather.data.models
 
 import com.google.gson.annotations.SerializedName
 
-
 // answer response
 data class ResponseWeather(
 

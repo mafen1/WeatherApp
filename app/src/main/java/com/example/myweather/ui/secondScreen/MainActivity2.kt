@@ -3,20 +3,16 @@ package com.example.myweather.ui.secondScreen
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myweather.core.Extension
-import com.example.myweather.data.repository.RepositoryImpl
+import com.example.myweather.core.Extension1
+import com.example.myweather.core.updateText
 import com.example.myweather.databinding.ActivityMain2Binding
-import com.example.myweather.domain.useCase.UseCase
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity2 : AppCompatActivity() {
 
     private lateinit var binding: ActivityMain2Binding
-    private val repository = RepositoryImpl()
-    private val viewModel: SecondViewModel by viewModels {
-        ViewModelFactorySecond(UseCase(repository))
-    }
-    private val extension = Extension()
+    private val viewModel: SecondViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,22 +36,20 @@ class MainActivity2 : AppCompatActivity() {
 
         viewModel.apply {
             temperature.observe(this@MainActivity2) {
-                extension.updateText(binding.tvParameterTemperature, it.toString())
+                updateText(binding.tvParameterTemperature, it.toString())
             }
             cloudinessParameter.observe(this@MainActivity2) {
-                extension.updateText(binding.tvParameterCloud, it.toString())
+                updateText(binding.tvParameterCloud, it.toString())
             }
             description.observe(this@MainActivity2) {
-                extension.updateText(binding.tvParameterDescription, it.toString())
+                updateText(binding.tvParameterDescription, it.toString())
 
             }
             minTemperature.observe(this@MainActivity2) {
-                extension.updateText(binding.tvParameterMinTemperature, it.toString())
-
+                updateText(binding.tvParameterMinTemperature, it.toString())
             }
             maxTemperature.observe(this@MainActivity2) {
-                extension.updateText(binding.tvParameterMaxTemperature, it.toString())
-
+                updateText(binding.tvParameterMaxTemperature, it.toString())
             }
         }
     }

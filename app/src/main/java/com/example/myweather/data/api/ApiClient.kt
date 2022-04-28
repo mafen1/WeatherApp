@@ -2,10 +2,11 @@ package com.example.myweather.data.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-object ApiClient {
+object ApiClient{
 
-    private const val baseUrl = "http://api.openweathermap.org/"
+    private val baseUrl = "http://api.openweathermap.org/"
     private var retrofit: Retrofit? = null
 
     private fun getClient(baseUrl: String): Retrofit {

@@ -6,16 +6,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myweather.core.Extension
+import com.example.myweather.core.Extension1
 import com.example.myweather.core.ImmutableValues
 import com.example.myweather.domain.useCase.UseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SecondViewModel(
+@HiltViewModel
+class SecondViewModel @Inject constructor(
     private val useCase: UseCase
 ) : ViewModel() {
-    private val exception = Extension()
+    private val exception = Extension1()
 
     private var _temperature: MutableLiveData<Double> = MutableLiveData()
     var temperature: LiveData<Double> = _temperature
@@ -46,7 +49,8 @@ class SecondViewModel(
                     response.body()?.clouds?.all ?: throw IllegalStateException("not info")
                 )
                 _description.postValue(
-                    response.body()?.weather?.get(0)?.description ?: throw IllegalStateException("not info")
+                    response.body()?.weather?.get(0)?.description
+                        ?: throw IllegalStateException("not info")
                 )
                 Log.d(ImmutableValues.TAG, _description.value.toString())
                 _minTemperature.postValue(

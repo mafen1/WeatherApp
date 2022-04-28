@@ -5,17 +5,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myweather.core.Extension
+import com.example.myweather.core.Extension1
 import com.example.myweather.domain.useCase.UseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val useCase: UseCase
 ) : ViewModel() {
 
-    private val exception = Extension()
+    private val exception = Extension1()
 
     private var _listTemperature: MutableLiveData<Double> = MutableLiveData()
     var listTemperature: LiveData<Double> = _listTemperature

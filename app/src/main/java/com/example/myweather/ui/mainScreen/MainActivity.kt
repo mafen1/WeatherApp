@@ -5,20 +5,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myweather.core.Extension
-import com.example.myweather.data.repository.RepositoryImpl
+import com.example.myweather.core.makeSnackBarMessage
+import com.example.myweather.core.updateText
 import com.example.myweather.databinding.ActivityMainBinding
-import com.example.myweather.domain.useCase.UseCase
 import com.example.myweather.ui.secondScreen.MainActivity2
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val repository = RepositoryImpl()
-    private val viewModel: MainViewModel by viewModels {
-        ViewModelFactory(UseCase(repository))
-    }
-    private val extension = Extension()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +32,8 @@ class MainActivity : AppCompatActivity() {
                 viewModel.temperatureInThisCity(binding.edFindCity.text.toString(), binding.root)
                 initObserver()
             } else {
-                extension.makeSnackBarMessage(
-                    binding.root,
-                    "Пожалуйста введите город!!"
-                )
+                makeSnackBarMessage(binding.root,
+                    "Пожалуйста введите город!!")
                 binding.btnMore.visibility = View.GONE
             }
         }
@@ -53,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.listTemperature.observe(this) {
-            extension.updateText(binding.tvTemperature, it.toString())
+            updateText(binding.tvTemperature, it.toString())
         }
     }
 }

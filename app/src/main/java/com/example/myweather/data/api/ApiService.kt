@@ -5,6 +5,7 @@ import com.example.myweather.data.models.ResponseWeather
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
+import javax.inject.Inject
 
 interface ApiService {
 
@@ -17,7 +18,7 @@ interface ApiService {
     ): Response<ResponseWeather>
 
     // отправлем запррос
-    class ApiServiceImpl : ApiService {
+    class ApiServiceImpl @Inject constructor() : ApiService {
         override suspend fun fetchWeather(
             userCity: String,
             idApp: String,
