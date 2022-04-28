@@ -1,6 +1,5 @@
 package com.example.myweather.di
 
-import com.example.myweather.data.api.ApiService
 import com.example.myweather.data.repository.RepositoryImpl
 import com.example.myweather.domain.repository.Repository
 import dagger.Binds
@@ -14,8 +13,4 @@ abstract class AppModule {
 
     @Binds
     abstract fun bindsRepository(repository: RepositoryImpl) : Repository
-
-    @Binds
-    abstract fun bindsApiService(apiService: ApiService.ApiServiceImpl) : ApiService
-
 }

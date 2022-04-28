@@ -16,16 +16,4 @@ interface ApiService {
         @Query("units") units: String = ImmutableValues.units,
         @Query("lang") language: String = ImmutableValues.language
     ): Response<ResponseWeather>
-
-    // отправлем запррос
-    class ApiServiceImpl @Inject constructor() : ApiService {
-        override suspend fun fetchWeather(
-            userCity: String,
-            idApp: String,
-            units: String,
-            language: String
-        ): Response<ResponseWeather> {
-            return ApiClient.getApiService().fetchWeather(userCity)
-        }
-    }
 }

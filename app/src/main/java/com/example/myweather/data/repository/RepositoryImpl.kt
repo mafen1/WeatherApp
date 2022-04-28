@@ -9,5 +9,4 @@ import javax.inject.Inject
 class RepositoryImpl @Inject constructor(private val apiService: ApiService) : Repository {
 
     override suspend fun getTemperature(userCity: String): Response<ResponseWeather> = apiService.fetchWeather(userCity)
-//        ApiService.ApiServiceImpl().fetchWeather(userCity)
 }
